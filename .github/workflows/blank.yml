@@ -1,0 +1,17 @@
+Nome: GitHub Ações Exemplo
+em: [empurrar]		
+Empregos:  
+Explore-GitHub-Ações:  
+run-on: ubuntu-latest     
+Degraus:
+run: echo "O trabalho foi automaticamente acionado por um $Github.event_name ? evento."  
+run: echo "Este trabalho agora está sendo executado em um $ runner.os ? servidor hospedado pelo GitHub!"  
+run: echo "O nome da sua filial é $? GitHub.ref ? e seu repositório é $? GitHub.repository . .  
+Nome: Confira o código do repositório  
+usuário: ações/checkout-se  
+run: eco "O repositório $ GitHub.repository foi clonado para o corredor."   
+execute: eco "O fluxo de trabalho agora está pronto para testar seu código no corredor".  
+Nome: Lista de arquivos inno repositório  
+corrida: |     
+Is $? GitHub.workspace ?  
+run: eco "O status deste trabalho é $' job.status ?."
