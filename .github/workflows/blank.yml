@@ -1,17 +1,29 @@
-Nome: GitHub Ações Exemplo
-em: [empurrar]		
-Empregos:  
-Explore-GitHub-Ações:  
-run-on: ubuntu-latest     
-Degraus:
-run: echo "O trabalho foi automaticamente acionado por um $Github.event_name ? evento."  
-run: echo "Este trabalho agora está sendo executado em um $ runner.os ? servidor hospedado pelo GitHub!"  
-run: echo "O nome da sua filial é $? GitHub.ref ? e seu repositório é $? GitHub.repository . .  
-Nome: Confira o código do repositório  
-usuário: ações/checkout-se  
-run: eco "O repositório $ GitHub.repository foi clonado para o corredor."   
-execute: eco "O fluxo de trabalho agora está pronto para testar seu código no corredor".  
-Nome: Lista de arquivos inno repositório  
-corrida: |     
-Is $? GitHub.workspace ?  
-run: eco "O status deste trabalho é $' job.status ?."
+name: GitHub Ações Exemplo
+
+on: 
+  push:  # Aciona a execução quando há um push no repositório
+
+jobs:
+  explore-github-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Exibir informações do evento
+        run: |
+          echo "O trabalho foi automaticamente acionado por um evento: ${{ github.event_name }}"
+          echo "Este trabalho agora está sendo executado em um servidor: ${{ runner.os }}"
+          echo "O nome da sua filial é ${{ github.ref }} e seu repositório é ${{ github.repository }}"
+
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Exibir informações sobre o repositório
+        run: |
+          echo "O repositório ${{ github.repository }} foi clonado para o runner."
+          echo "O fluxo de trabalho agora está pronto para testar seu código no runner."
+
+      - name: Listar arquivos no repositório
+        run: ls ${{ github.workspace }}
+
+      - name: Mostrar status do job
+        run: echo "O status deste trabalho é ${{ job.status }}"
